@@ -1,0 +1,37 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+        - WebscopeDrupalContext
+        - WebscopeMinkContext
+        - Cevou\Behat\ScreenshotCompareExtension\Context\ScreenshotCompareContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+      filters:
+        tags: ~@regression_baseline
+  extensions:
+    Behat\MinkExtension:
+      goutte: ~
+      selenium2:
+        # wd_host: "http://192.168.43.104:4444/wd/hub"
+        # browser: chrome
+       wd_host: "http://localhost:4445/wd/hub"
+       browser: phantomjs
+      base_url: http://webscope-drupal-south-demo.local/
+    Drupal\DrupalExtension:
+          blackbox: ~
+          api_driver: 'drupal'
+          drupal:
+            drupal_root: '/home/vagrant/sites/webscope-drupal-south-demo.local'
+    Cevou\Behat\ScreenshotCompareExtension:
+          screenshot_dir: %paths.base%/features/screenshots
+          sessions:
+            default: ~
+            selenium2: ~
+          adapters:
+            default:
+              local:
+                directory: %paths.base%/features/screenshots/error_screenshots
