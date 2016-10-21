@@ -1,0 +1,10 @@
+{
+    "require": {
+        "drush/drush": "8.x",
+        "drupal/drupal-extension": "~3.2",
+        "drupal/console": "@stable"
+    },
+    "require-dev": {
+        "cevou/behat-screenshot-compare-extension": "~1.0@dev"
+    }
+}
